@@ -1,0 +1,40 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>view_mynotes</title>
+</head>
+<body>
+	<div class="table-border">
+	<table style = "width: 80%;margin-top: 10%;margin-left: 10%;margin-right: 10%;"> 
+	<thead style="background-color: rgb(7, 163, 111);padding: 10%;">
+		<th>S.No</th>
+		<th>uploadingdate</th>
+		<th>branch</th>
+		<th>subject</th>
+		<th>download</th>
+		<th>Description</th>
+		<th>Status</th></thead>
+    {% for i in notes %}
+		<tbody>
+<tr>
+	<td>{{forloop.counter}}</td>
+             <td>{{i.uploadingdate}}</td>
+			 <td>{{i.branch}}</td>
+			 <td>{{i.subject}}</td>
+			 <td><a href="{{i.notefile.url}}" class="btn btn-success" download>Download</a></td>
+			 <td>{{i.description}}</td>
+			 <td>{{i.status}}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+    
+
+	</table>
+</div>
+</body>
+</html>

@@ -1,0 +1,48 @@
+{% extends 'navbar.html' %}
+{% load static %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>STUDIEN</title>
+    <script src="https://kit.fontawesome.com/c4254e24a8.js" crossorigin="anonymous"></script>
+   {% if error == "no" %}
+   <script>
+    alert('Loggedin successfully')
+    window.location.href="{% url 'profile' %}"
+   </script>
+   {% endif %}
+
+   {% if error == "yes" %}
+   <script>
+    alert('Something went wrong try again..')
+   </script>
+   {%  endif %}
+
+   
+</head>
+<body>
+    <div class="Login" id="login">
+        <h1 class="heading" style="font-size:150%;">Login Form</h1>
+        <form method="post" action="">
+            {% csrf_token %}
+    <div class="input-field">
+        <i class="fa-solid fa-user"></i>
+        <input type="text" placeholder="Enter Name" name="name" required>
+    </div>
+    <div class="input-field">
+        <i class="fa-solid fa-lock"></i>
+        <input type="password" placeholder="Enter Password" name="pass" required>
+    </div>
+    <input type="submit" class="btn btn-primary mt-sm-3" value="LOGIN">
+    <label>Don't have an account ?<a href="{% url 'signup'%}">REGISTER</a></label>
+</form>
+</div>
+</body>
+
+</html>
+{% endblock %}

@@ -1,0 +1,99 @@
+{% extends 'profilemanagenav.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>profile</title>
+</head>
+<style>
+    .profile{
+    max-width: 400px;
+    border-radius: 10px;
+    position:absolute;
+    text-align: center;
+    background: #ffffff;
+    left:15%;
+    top:15%;
+    padding: 40px 50px 40px;
+    box-shadow: 3px 5px 10px rgba(0, 0, 0, 0.966);
+    opacity: 0.75;   
+    
+    }
+    input{
+        
+      width:100%;
+      background: transparent;
+      border:0;
+      outline: 0;
+      padding:9px;
+      border-bottom: 2px solid black;
+    
+}
+body{
+
+    background-color: black;
+    background-image: url("http://127.0.0.1:8000/static/images/note1.jpg");
+
+    background-size: cover;
+}
+
+
+    
+</style>
+<body>
+    <div class="profile" id="profile">
+        <div class="input-group">
+            <div class="input-field">
+                <label>Name:</label>
+                <input type="text" placeholder="Enter Name" id="fullname" name="name" value=" {{uname}}"  required>
+            </div>
+            <br> <br> 
+            <br> <br>
+            
+            <div class="input-field">
+                <label>Email:</label>
+                <input type="email" placeholder="Enter email" id="mail" name="mail" value=" {{email}}"  required>
+                
+            </div>
+            <br> <br> 
+            <br> <br> 
+            
+            <div class="input-field">
+                <label>Contact:</label>
+                <input type="email" placeholder="Enter Contact" id="mail" name="mail" value=" {{cont}}"  required>
+                
+            </div>
+            <br> <br>  <br> <br>
+            <div class="input-field">
+                <label>Branch:</label>
+                <input type="email" placeholder="Enter Branch" id="mail" name="mail" value=" {{br1}}"  required>
+                
+            </div>
+            <br> <br> <br> <br>
+        
+                </div>
+                
+            
+        
+        
+           
+           
+            
+           
+            
+        
+        
+        
+</div>
+        
+<div class="profile-img">
+    <img src ="{% static 'images/note1.jpg' %}" width="200px" style="margin-left:600px;border-radius: 50%;border: 2px solid black ;margin-top: 50px;">
+    <button style="margin-left:650px;"class="btn btn-primary mt-sm-3">Editprofile</button>
+</div>
+</body>
+</html>
+{% endblock %}

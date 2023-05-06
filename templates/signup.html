@@ -1,0 +1,229 @@
+
+{% extends 'navbar.html' %}
+{% load static %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style1.css">
+    <title>STUDIEN</title>
+    <script src="https://kit.fontawesome.com/c4254e24a8.js" crossorigin="anonymous"></script>
+    
+ 
+    </script>
+    <style>
+        .input-field button{
+            text-align: center;
+            padding: 3px;
+            margin-left: 150px;
+        }
+        #mail{
+            width:115%
+        }
+        button{
+            border-radius: 10px;
+            padding: 7px;
+            color: white;
+            background-color:orange ;
+            margin-top: 5px;
+            border:1px solid black;
+        }
+        .om{
+            margin-left:80px;
+        }
+        .otp-verify{
+            display: none;
+        }
+     
+    </style>
+
+
+
+</head>
+
+
+
+<body>
+    
+    <script>
+        let b  = document.getElementById("new").value 
+        if (b.length>0)
+        {
+            document.getElementById("new").style.backgroundColor = "green"
+        }
+ 
+        function otpverifyprocess()
+         {
+          
+           x = document.getElementById("act").action 
+           if(x.search('sendotp/') > 0)
+           {
+            
+             alert("you will recieve an otp please check your mail")
+        
+            
+           }
+
+           else{
+            document.getElementById("act").action='sendotp/'
+           }
+            
+           
+     
+        
+            document.getElementById("otpnum").required = false;
+            const otpverify = document.getElementsByClassName('otp-verify')[0];
+            otpverify.style.display="block";
+        }
+       
+     </script>
+   
+
+    <div class="Signup" id="signup">
+        <h1 class="heading" style="font-size:150%;">User Signup Form</h1>
+        <form method="post"  id="act" action="" >
+            {% csrf_token %}
+            <div class="input-group">
+                <div class="input-field">
+                    <i class="fa-solid fa-user"></i>
+                    <input type="text" placeholder="Enter Name" id="fullname" name="name" value="{{uname}}"  required>
+                    <span id="name-error" style="color: red; visibility: hidden;">Invalid username</span>
+                    <span id="name-valid" style="color: green; visibility: hidden; text-align: center;">valid username</span>
+                    
+                </div>
+                <div class="email-verify">
+                    <i class="fa-solid fa-envelope"></i>
+                    <input type="email" placeholder="Enter Email" value="{{email}}" name="emailid" id="mail" required>
+                    <span id="mail-err"></span>
+                  
+                </div>
+                
+                <button onclick="otpverifyprocess()" id="game">Send-otp</button>
+               
+              
+                <div class="otp-verify" {% if otpverify %}
+                    style="display: block;"
+                {% endif %}>
+                    <input type="text" id="new" value="{{otpverify}}" hidden>
+                    <i class="fa-solid fa-envelope"></i>
+                    <input type="text" placeholder="Enter otp" name="otpbox" id="otpnum" required>
+                    <input type="button" id="otpbtn" onclick="chck()" class="btn btn-primary mt-sm-3" style="cursor: pointer;border-bottom: none;" value="verify">
+                    <p id="ptag" style="color:red;" hidden>Invalid pin can be given</p>
+                    
+                                    </div>
+                                    <script>
+                                        function chck()
+                                        {
+                                            let x = document.getElementById("new").value
+                                            
+                                            let y = document.getElementById("otpnum").value
+
+                                            if(y.length == 0)
+                                            {
+                                                alert('no value can be given')
+                                            }
+                                            
+                                            else if(x == y)
+                                            {
+                                                alert("otp valid")
+                                                document.getElementById('otpbtn').style.backgroundColor='green';
+                                                document.getElementById('otpbtn').value='Verified';
+                                                window.stop()
+                                                
+                                                
+                                               
+                                            }
+                                            else  if(x != y)
+                                            {
+                                                alert("otp invalid")
+                                                document.getElementById('otpbtn').style.backgroundColor='red';  
+                                                document.getElementById('otpbtn').value ='Invalid';
+                                                window.stop()
+                                        
+
+                                               
+                                            }
+                                           
+
+                                        }
+                                    </script>
+                <div class="input-field">
+                    <i class="fa-solid fa-user"></i>
+                    <select name="contact" value ="{{cont}}" required >
+                        <option value="">--- Select ROLE ---</option>
+                        <option id="{{cont}}" value="TEACHER">Teacher</option>
+                        <option id="{{cont}}" value="STUDENT" >Student</option>
+                        
+                    </select>
+                   
+                </div>
+                <br>  <br> <br> <br>
+                <div class="input-field">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" placeholder="Enter Password" value="{{passc}}" name="password" id="pass1" required>
+                    <span id="pass-error" style="color: red; visibility: hidden;">Password must be only 10 characters</span>
+                    <span id="pass-valid" style="color: green; visibility: hidden; text-align: center;">Valid password</span>
+                    
+                </div>
+                <div class="input-field">
+                    <i class="fa-solid fa-book"></i>
+                    <select name="branch" value ="{{br1}}" required >
+                        <option value="">--- Select Branch ---</option>
+                        <option id="{{br1}}" value="IT">IT</option>
+                        <option id="{{br1}}" value="Computer Science" >Computer Science</option>
+                        <option id="{{br1}}" value="Mech">Mechanical</option>
+                        <option id="{{br1}}" value="Geo-informataics">Geo-informatics</option>
+                        <option id="{{br1}}" value="EEE">EEE</option>
+                        <option id="{{br1}}" value="ECE">ECE</option>
+                    </select>
+                    <script>
+                        document.getElementById("{{br1}}").selected = true;
+                    </script>
+                      <script>
+                        document.getElementById("{{cont}}").selected = true;
+                    </script>
+    
+                </div>
+                
+                <input type="submit" onclick ="register();" class="btn btn-primary mt-sm-3" value="REGISTER" required>
+                <label>Already have an account! <a href="{% url 'login' %}">LOGIN</a></label>
+        </form>
+     
+        
+
+
+
+        
+    </div>
+   
+       
+
+
+</body>
+
+<script>
+    
+    function register()
+    {
+        if(document.getElementById('otpbtn').value=='Verified')
+        {
+            
+           
+            document.getElementById('act').action='register/';
+          
+      
+        }
+
+
+    }
+   
+</script>
+
+
+
+
+</html>
+ {% endblock %}

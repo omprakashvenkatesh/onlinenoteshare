@@ -1,0 +1,80 @@
+{% extends 'navbar.html' %}
+{% load static %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://kit.fontawesome.com/c4254e24a8.js" crossorigin="anonymous"></script>
+   
+    
+    
+    <style>
+        input{
+            border-bottom: none;
+            border: 1px solid rgb(89, 53, 53);
+            max-width:350px;
+            width:120%;
+            
+        }
+        textarea{
+            width:120%;
+        }
+        #submit{
+            width:50%;
+            border-radius: 10px;
+        }
+       
+        .Contact{
+          
+            border-radius: 10px;
+            position:absolute;
+            text-align: center;
+            background: #ffffff;
+            left:30%;
+            top:25%;
+             padding: 0px 100px 10px 75px;
+            box-shadow: 3px 5px 10px rgba(0, 0, 0, 0.966);
+            opacity: 0.75; 
+        }
+       
+    </style>
+    
+<script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+</script>
+</head>
+<body>
+    <div class="Contact" id="contact">
+        <h3>Contact us</h3>
+        <form   method="POST" >
+            {% csrf_token %}
+        <div class="input-field">
+       
+        <i class="fa-solid fa-user"></i>
+        <input type="text" placeholder="Enter Name" id="fullname" name="name"  required>
+    </div>
+    <div class="input-field">
+        <i class="fa-solid fa-envelope"></i>
+        <input type="email" placeholder="Enter Email" id="emailname"name="mailbox" required>
+       
+    </div>
+    <div class="input-field">
+        <i class="fa-solid fa-phone"></i>
+        <input type="text" placeholder="Enter Phone number" name ="phonenumber" required>
+    </div>
+    <div class="input-field">
+        <i class="fa-solid fa-message"></i><br>
+        <textarea placeholder="Message" name="message" id="message" rows="5" required ></textarea>
+    </div>
+
+    <input type="submit"  class="btn btn-primary mt-sm-3" value="Send">
+</form>
+    </div>
+    
+</body>
+</html>
+{% endblock %}
